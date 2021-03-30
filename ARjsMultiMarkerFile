@@ -1,0 +1,57 @@
+{
+	"meta": {
+		"createdBy": "Area Learning - AR.js 2.1.3",
+		"createdAt": "2019-12-24T07:26:59.025Z"
+	},
+	"trackingBackend": "artoolkit",
+	"subMarkersControls": [
+		{
+			"parameters": {
+				"type": "pattern",
+				"patternUrl": "marker/pattern-marker_a.patt"
+			},
+			"poseMatrix": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1
+			]
+		},
+		{
+			"parameters": {
+				"type": "pattern",
+				"patternUrl": "marker/pattern-marker_b.patt"
+			},
+			"poseMatrix": [
+								0.9814602420080649,
+				0.18829461209155027,
+				0.03579171727960883,
+				0,
+				-0.19075897462336297,
+				0.9777793222166583,
+				0.08694570360182682,
+				0,
+				-0.01862499025916701,
+				-0.09216140990699881,
+				0.9955696071847018,
+				0,
+				6.006754629577603,
+				0.5906592840946395,
+				-1.2981898706563906,
+				0.9999999999999999
+			]
+		}
+	]
+}

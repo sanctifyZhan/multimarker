@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<header>
+	<!-- Global site tag (gtag.js) - Google Analytics-->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-154688282-4"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-154688282-4');
+	</script> 
+
+</header>
+
+
+
+<script src="https://aframe.io/releases/1.0.2/aframe.min.js"></script>
+<!-- include ar.js -->
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/2.0.0/aframe/build/aframe-ar.js"></script>
+<!-- to load .ply model -->
+<script src="https://rawgit.com/donmccurdy/aframe-extras/v6.0.1/dist/aframe-extras.loaders.min.js"></script>
+<!-- include A-Frame obviously-->
+<script>   //Loads multimarker file to localstorage otherwise the area preset will only look for hiro alone
+  var a = window.location.toString();
+  var file = a.substring(a.indexOf("?") + 1);
+  
+  var xobj = new XMLHttpRequest();
+      xobj.overrideMimeType("application/json");
+      if(file==a){
+        xobj.open('GET', 'ARjsMultiMarkerFile', true); // 
+      }
+      else{
+        xobj.open('GET', file, true); // 
+      }
+      xobj.onreadystatechange = function () { 
+    if (xobj.readyState == 4 && xobj.status == "200") {
+    localStorage.setItem('ARjsMultiMarkerFile',xobj.responseText);
+    }};
+    xobj.send();
+</script>
+<script>
+AFRAME.registerComponent('model-opacity', {
+schema: {default: 1.0},
+init: function () {
+this.el.addEventListener('model-loaded', this.update.bind(this));
+},
+update: function () {
+var mesh = this.el.getObject3D('mesh');
+var data = this.data;
+if (!mesh) { return; }
+mesh.traverse(function (node) {
+  if (node.isMesh) {
+    node.material.opacity = data;
+    node.material.transparent = data < 1.0;
+    node.material.needsUpdate = true;
+  }
+});
+}
+});
+</script>
+
+  <body>
+   
+    <a-scene embedded arjs=" debugUIEnabled: false;" vr-mode-ui="enabled: false" >
+
+          <a-marker preset="area">
+            <a-light type="ambient" color="white" intensity="1.7"></a-light>
+            <a-entity scale="1 1 1">
+            <!-- <a-light type="ambient" color="white" intensity="1.5"></a-light> -->
+            <a-obj-model src="models/Cloud_A.obj" mtl="models/Cloud_A.mtl" id="Cloud_A_0" model-opacity="0.4" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <!-- <a-entity obj-model="obj: Cloud_A_Asset_obj_0; mtl:Cloud_A_Asset_mtl_0" id="Cloud_A_0" model-opacity="0.5" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.55" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-entity> -->
+            <a-obj-model src="models/Build_B_all.obj" mtl="models/Build_B_all.mtl" id="Build_B_Top_1" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <!-- <a-obj-model src="models/Build_B_Bot.obj" mtl="models/Build_B_Bot.mtl"  id="Build_B_Bot_2" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/Build_C_Top.obj"  mtl="models/Build_C_Top.mtl"  id="Build_C_Top_3" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.88 -0.63 1.55" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model> -->
+            <a-obj-model src="models/Build_C_all.obj"  mtl="models/Build_C_all.mtl"  id="Build_C_Bot_4" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.88 -0.63 1.55" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/Build_A.obj"  mtl="models/Build_A.mtl" id="Build_A_5" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.88 -0.63 1.55" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/Cloud_B001.obj"  mtl="models/Cloud_B001.mtl"  id="Cloud_B001_6" model-opacity="0.5" class="intersectable" scale="2.702703 2.702703 2.702703" position="1.345 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+
+            ></a-obj-model>
+            <a-obj-model src="models/Cloud_B002.obj"  mtl="models/Cloud_B002.mtl"  id="Cloud_B002_7" model-opacity="0.4" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+
+            ></a-obj-model>
+            <!-- <a-entity obj-model="obj:models/Cloud_B001.obj; mtl: models/Cloud_B001.mtl" id="Cloud_B001_6" model-opacity="0.5" class="intersectable" scale="2.702703 2.702703 2.702703" position="1.345 -0.63 2.55" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-entity>
+            <a-entity obj-model="obj: models/Cloud_B002.obj; mtl: models/Cloud_B002.mtl" id="Cloud_B002_7"  model-opacity="0.6"  class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.55" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-entity> -->
+            <a-obj-model src="models/Cloud_Group_1.obj"  mtl="models/Cloud_Group_1.mtl"  id="Cloud_B003_8" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.88 -0.63 1.55" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <!-- <a-obj-model src="models/Cloud_B004.obj"  mtl="models/Cloud_B004.mtl" id="Cloud_B004_9" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.88 -0.63 1.55" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/Cloud_B005.obj"  mtl="models/Cloud_B005.mtl"  id="Cloud_B005_10" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.88 -0.63 1.55" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model> -->
+            <a-obj-model src="models/Cloud_B_nuki_0_Right.obj"  mtl="models/Cloud_B_nuki_0_Right.mtl"  id="Cloud_B_nuki_0_Right_11" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/Cloud_B_nuki_2_Right.obj"  mtl="models/Cloud_B_nuki_2_Right.mtl"  id="Cloud_B_nuki_2_Right_12" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <!-- <a-obj-model src="models/Cloud_C.obj"  mtl="models/Cloud_C.mtl"  id="Cloud_C_13" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.88 -0.63 1.55" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model> -->
+            <a-obj-model src="models/Cloud_C001.obj"  mtl="models/Cloud_C001.mtl"  id="Cloud_C001_14" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/Cloud_C_ADD.obj"  mtl="models/Cloud_C_ADD.mtl"  id="Cloud_C_nuki_2_Left_15" class="intersectable" scale="2.702703 2.702703 2.702703" position="1.345 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <!-- <a-obj-model src="models/Cloud_Maru_01.obj"  mtl="models/Cloud_Maru_01.mtl"  id="Cloud_Maru_01_16" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.88 -0.63 1.55" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/Cloud_Maru_002.obj"  mtl="models/Cloud_Maru_002.mtl"  id="Cloud_Maru_002_17" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.88 -0.63 1.55" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/Cloud_Maru_003.obj"  mtl="models/Cloud_Maru_003.mtl"  id="Cloud_Maru_003_18" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.88 -0.63 1.55" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/Cloud_Maru_004.obj"  mtl="models/Cloud_Maru_004.mtl"  id="Cloud_Maru_004_19" class="intersectable" scale="2.702703 2.702703 2.702703" position="1.345 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model> -->
+            <a-obj-model src="models/Cloud_Maru_Group.obj"  mtl="models/Cloud_Maru_Group.mtl"  id="Cloud_Maru_005_20" class="intersectable" scale="2.702703 2.702703 2.702703" position="1.345 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/Cloud_Maru_B.obj"  mtl="models/Cloud_Maru_B.mtl"  id="Cloud_Maru_B_21" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/Design_A.obj"  mtl="models/Design_A.mtl"  id="Design_A_22" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.88 -0.63 1.55" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/Design_B.obj"  mtl="models/Design_B.mtl"  id="Design_B_23" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/TANK.obj"  mtl="models/TANK.mtl"  id="TANK_24" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/UFO_Top.obj"  mtl="models/UFO_Top.mtl"  id="UFO_TOP_25" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/UFO_ring.obj"  mtl="models/UFO_ring.mtl"  id="UFO_RING_main_26" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/UFO_Bmain_ring.obj"  mtl="models/UFO_Bmain_ring.mtl"  id="UFO_Bmain_ring_27" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model>
+            <a-obj-model src="models/UFO_Bmain.obj"  mtl="models/UFO_Bmain.mtl"  id="UFO_Bmain_28" class="intersectable" scale="2.702703 2.702703 2.702703" position="2.567 -0.63 2.1" rotation="0 0 0" color="#ffffff" transparent=False
+            ></a-obj-model> 
+            <!--<a-entity obj-model="obj: #base_Asset_obj_10; mtl: #base_Asset_mtl_10" id="base_10" class="intersectable" scale="0.01 0.01000001 0.01000001" position="0.177 0 -0.341" rotation="270 0 0" color="#ffffff" transparent="False"
+            ></a-obj-model>-->
+          </a-entity>
+                
+              </a-marker>
+              <a-entity camera position="0 0 0"></a-obj-model>
+            </a-scene>
+            </body>
+            </html>
